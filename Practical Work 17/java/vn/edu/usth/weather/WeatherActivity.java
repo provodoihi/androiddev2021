@@ -236,6 +236,9 @@ public class WeatherActivity extends AppCompatActivity {
                                     obj = new JSONObject(response);
                                     String city = obj.getString("name");
                                     JSONObject temper = obj.getJSONObject("main");
+                                    JSONArray desc = obj.getJSONArray("weather");
+                                    JSONObject desss = desc.getJSONObject(0);
+                                    String description = desss.getString("description");
                                     String temp = temper.getString("temp");
                                     String press = temper.getString("pressure");
                                     String humid = temper.getString("humidity");
@@ -244,10 +247,12 @@ public class WeatherActivity extends AppCompatActivity {
                                     TextView textView2 = findViewById(R.id.weather);
                                     TextView textView3 = findViewById(R.id.humid);
                                     TextView textView4 = findViewById(R.id.cityy);
+                                    TextView textView5 = findViewById(R.id.des);
                                     textView4.setText("City: "+city);
                                     textView1.setText("Temperature: "+temp+"C");
                                     textView2.setText("Pressure: "+press);
                                     textView3.setText("Humid: "+humid+"%");
+                                    textView5.setText("Description: "+description);
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
